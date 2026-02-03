@@ -1,7 +1,7 @@
 {
-  "name": "innohub---crowdfunding-&-volunteer-innovation-platform",
+  "name": "inovhub-mejj",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.1.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -9,12 +9,11 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "lucide-react": "^0.463.0",
-    "@google/generative-ai": "^0.1.0",
     "@supabase/supabase-js": "^2.39.0",
-    "react-router-dom": "^6.20.1",
+    "lucide-react": "^0.463.0",
+    "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react": "^18.2.0"
+    "react-router-dom": "^6.20.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.0",
