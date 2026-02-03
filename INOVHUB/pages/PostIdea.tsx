@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Rocket } from 'lucide-react';
-import { supabase } from '../services/supabaseService';
+// PERBAIKAN ALAMAT IMPORT DI SINI
+import { supabase } from '../supabaseService'; 
 
 const PostIdea: React.FC<{ onAdd: any }> = ({ onAdd }) => {
   const navigate = useNavigate();
@@ -15,7 +16,6 @@ const PostIdea: React.FC<{ onAdd: any }> = ({ onAdd }) => {
     
     setLoading(true);
     try {
-      // Mengirim data ke tabel website_data
       const { data, error } = await supabase
         .from('website_data')
         .insert([{ 
@@ -69,7 +69,7 @@ const PostIdea: React.FC<{ onAdd: any }> = ({ onAdd }) => {
         <button 
           disabled={loading}
           type="submit"
-          className="w-full bg-indigo-600 text-white py-4 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-indigo-700 transition-all"
+          className="w-full bg-indigo-600 text-white py-4 rounded-xl font-bold flex items-center justify-center gap-2"
         >
           <Rocket className="w-5 h-5" />
           {loading ? 'Sedang Mengirim...' : 'Launch Idea'}
