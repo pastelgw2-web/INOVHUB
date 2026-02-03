@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-// Import App dari folder yang sama
-import App from './App';
+// Tambahkan .tsx secara eksplisit untuk memastikan file terbaca
+import App from './App.tsx';
 
 const rootElement = document.getElementById('root');
 
