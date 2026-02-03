@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Rocket } from 'lucide-react';
-// Alamat ini sekarang benar karena file supabaseService sudah kita buat di folder services
-import { supabase } from '../services/supabaseService'; 
+// Gunakan ../../ untuk keluar dari folder 'pages' lalu masuk ke 'services'
+import { supabase } from '../../services/supabaseService'; 
 
 const PostIdea: React.FC<{ onAdd: any }> = ({ onAdd }) => {
   const navigate = useNavigate();
@@ -16,7 +16,6 @@ const PostIdea: React.FC<{ onAdd: any }> = ({ onAdd }) => {
     
     setLoading(true);
     try {
-      // Input data ke tabel website_data
       const { data, error } = await supabase
         .from('website_data')
         .insert([{ 
@@ -32,42 +31,40 @@ const PostIdea: React.FC<{ onAdd: any }> = ({ onAdd }) => {
       if (error) throw error;
       
       if (data) {
-        alert("Ide Berhasil Terkirim ke Cloud!");
+        alert("Berhasil!");
         navigate('/');
       }
     } catch (err: any) {
-      alert("Gagal: " + err.message);
+      alert("Error: " + err.message);
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="max-w-2xl mx-auto p-8 bg-white rounded-3xl shadow-sm mt-10">
-      <h2 className="text-2xl font-bold mb-6">Launch New Idea</h2>
-      <form onSubmit={handleSubmit} className="space-y-4">
+    <div style={{ padding: '20px', maxWidth: '500px', margin: '0 auto' }}>
+      <h1>Post Idea</h1>
+      <form onSubmit={handleSubmit}>
         <input 
-          className="w-full p-4 bg-slate-50 rounded-xl border border-slate-100"
-          placeholder="Judul Inovasi"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          required
+          style={{ width: '100%', padding: '10px', marginBottom: '10px' }}
+          placeholder="Judul" 
+          value={title} 
+          onChange={e => setTitle(e.target.value)} 
+          required 
         />
         <textarea 
-          className="w-full p-4 bg-slate-50 rounded-xl border border-slate-100"
-          rows={4}
-          placeholder="Deskripsi ide..."
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-          required
+          style={{ width: '100%', padding: '10px', marginBottom: '10px' }}
+          placeholder="Deskripsi" 
+          value={description} 
+          onChange={e => setDescription(e.target.value)} 
+          required 
         />
         <button 
-          disabled={loading}
-          type="submit"
-          className="w-full bg-indigo-600 text-white py-4 rounded-xl font-bold flex items-center justify-center gap-2"
+          disabled={loading} 
+          type="submit" 
+          style={{ width: '100%', padding: '10px', background: 'blue', color: 'white' }}
         >
-          <Rocket className="w-5 h-5" />
-          {loading ? 'Processing...' : 'Post to Supabase'}
+          {loading ? 'Sending...' : 'Post'}
         </button>
       </form>
     </div>
