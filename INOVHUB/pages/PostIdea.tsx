@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Rocket } from 'lucide-react';
-// Gunakan ../../ untuk keluar dari folder 'pages' lalu masuk ke 'services'
-import { supabase } from '../../services/supabaseService'; 
+// PERBAIKAN: Gunakan ../ bukan ../../
+import { supabase } from '../services/supabaseService'; 
 
 const PostIdea: React.FC<{ onAdd: any }> = ({ onAdd }) => {
   const navigate = useNavigate();
@@ -42,29 +42,35 @@ const PostIdea: React.FC<{ onAdd: any }> = ({ onAdd }) => {
   };
 
   return (
-    <div style={{ padding: '20px', maxWidth: '500px', margin: '0 auto' }}>
-      <h1>Post Idea</h1>
-      <form onSubmit={handleSubmit}>
-        <input 
-          style={{ width: '100%', padding: '10px', marginBottom: '10px' }}
-          placeholder="Judul" 
-          value={title} 
-          onChange={e => setTitle(e.target.value)} 
-          required 
-        />
-        <textarea 
-          style={{ width: '100%', padding: '10px', marginBottom: '10px' }}
-          placeholder="Deskripsi" 
-          value={description} 
-          onChange={e => setDescription(e.target.value)} 
-          required 
-        />
+    <div className="max-w-2xl mx-auto p-8 bg-white rounded-3xl shadow-sm mt-10">
+      <h1 className="text-3xl font-bold mb-6 text-slate-900">Post Ide Inovasi</h1>
+      <form onSubmit={handleSubmit} className="space-y-4">
+        <div>
+          <label className="block text-sm font-bold mb-2">Judul Proyek</label>
+          <input 
+            className="w-full p-4 bg-slate-50 rounded-xl outline-none border border-slate-100"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-bold mb-2">Deskripsi Singkat</label>
+          <textarea 
+            className="w-full p-4 bg-slate-50 rounded-xl outline-none border border-slate-100"
+            rows={4}
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            required
+          />
+        </div>
         <button 
-          disabled={loading} 
-          type="submit" 
-          style={{ width: '100%', padding: '10px', background: 'blue', color: 'white' }}
+          disabled={loading}
+          type="submit"
+          className="w-full bg-indigo-600 text-white py-4 rounded-xl font-bold flex items-center justify-center gap-2"
         >
-          {loading ? 'Sending...' : 'Post'}
+          <Rocket className="w-5 h-5" />
+          {loading ? 'Mengirim...' : 'Launch Idea'}
         </button>
       </form>
     </div>
