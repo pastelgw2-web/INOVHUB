@@ -1,8 +1,0 @@
-{
-  "name": "InnoHub - Crowdfunding & Volunteer Innovation Platform",
-  "description": "A comprehensive platform for innovative project crowdfunding, skill-based volunteering, and collaborative research development.",
-  "requestFramePermissions": [
-    "camera",
-    "microphone"
-  ]
-}
