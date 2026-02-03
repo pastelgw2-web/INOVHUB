@@ -1,7 +1,8 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { Rocket, PlusCircle, LayoutDashboard } from 'lucide-react';
-import Dashboard from './pages/Dashboard';
+// Pastikan folder 'pages' benar-benar ada di folder utama bersama App.tsx
+import Dashboard from './pages/Dashboard'; 
 import PostIdea from './pages/PostIdea';
 
 function App() {
