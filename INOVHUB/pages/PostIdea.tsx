@@ -1,51 +1,78 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Rocket, Loader2 } from 'lucide-react';
+import { Rocket } from 'lucide-react';
 import { supabase } from '../services/supabaseService';
 
 const PostIdea: React.FC<{ onAdd: any }> = ({ onAdd }) => {
   const navigate = useNavigate();
   const [loading, setLoading] = useState(false);
   const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!title || !description) return;
+    
     setLoading(true);
     try {
+      // Mengirim data ke tabel website_data
       const { data, error } = await supabase
         .from('website_data')
-        .insert([{ content: { title, status: 'Active' } }])
+        .insert([{ 
+          content: { 
+            title, 
+            description,
+            status: 'Active',
+            createdAt: new Date().toISOString()
+          } 
+        }])
         .select();
 
       if (error) throw error;
+      
       if (data) {
-        onAdd({ id: data[0].id, title, status: 'Active' });
+        alert("Berhasil memposting ide!");
         navigate('/');
       }
-    } catch (err) {
-      alert("Gagal: " + JSON.stringify(err));
+    } catch (err: any) {
+      alert("Gagal mengirim: " + err.message);
     } finally {
       setLoading(false);
     }
   };
 
   return (
-    <div className="p-8 max-w-md mx-auto">
-      <h1 className="text-2xl font-bold mb-4">Post Ide Baru</h1>
+    <div className="max-w-2xl mx-auto p-8 bg-white rounded-3xl shadow-sm mt-10">
+      <h1 className="text-3xl font-bold mb-6">Post Ide Inovasi</h1>
       <form onSubmit={handleSubmit} className="space-y-4">
-        <input 
-          className="w-full p-3 border rounded"
-          placeholder="Judul Inovasi"
-          value={title}
-          onChange={(e) => setTitle(e.target.value)}
-          required
-        />
+        <div>
+          <label className="block text-sm font-bold mb-2">Judul Proyek</label>
+          <input 
+            className="w-full p-4 bg-slate-50 rounded-xl outline-none border border-slate-100"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
+            placeholder="Contoh: Aplikasi Pendeteksi Hama"
+            required
+          />
+        </div>
+        <div>
+          <label className="block text-sm font-bold mb-2">Deskripsi Singkat</label>
+          <textarea 
+            className="w-full p-4 bg-slate-50 rounded-xl outline-none border border-slate-100"
+            rows={4}
+            value={description}
+            onChange={(e) => setDescription(e.target.value)}
+            placeholder="Jelaskan ide Anda..."
+            required
+          />
+        </div>
         <button 
           disabled={loading}
-          className="w-full bg-indigo-600 text-white p-3 rounded font-bold flex justify-center items-center gap-2"
+          type="submit"
+          className="w-full bg-indigo-600 text-white py-4 rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-indigo-700 transition-all"
         >
-          {loading ? <Loader2 className="animate-spin" /> : <Rocket />}
-          {loading ? 'Mengirim...' : 'Kirim ke Supabase'}
+          <Rocket className="w-5 h-5" />
+          {loading ? 'Sedang Mengirim...' : 'Launch Idea'}
         </button>
       </form>
     </div>
