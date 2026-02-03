@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { Rocket, PlusCircle, LayoutDashboard } from 'lucide-react';
 
-// Jalur ini disesuaikan dengan struktur INOVHUB/pages di GitHub Anda
+// Perhatikan penambahan /INOVHUB/ di bawah ini
 import Dashboard from './INOVHUB/pages/Dashboard';
 import PostIdea from './INOVHUB/pages/PostIdea';
 
