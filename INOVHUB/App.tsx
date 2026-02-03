@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { Rocket, PlusCircle, LayoutDashboard } from 'lucide-react';
 
-// PERBAIKAN: Menambahkan /INOVHUB/ agar Vercel bisa menemukan filenya
+// Jalur ini disesuaikan karena folder 'pages' Anda berada di dalam folder 'INOVHUB'
 import Dashboard from './INOVHUB/pages/Dashboard';
 import PostIdea from './INOVHUB/pages/PostIdea';
 
