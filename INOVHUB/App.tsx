@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import { Rocket, PlusCircle, LayoutDashboard } from 'lucide-react';
 
-// Alamat diperbarui agar masuk ke folder INOVHUB
+// Alamat ini disesuaikan dengan gambar struktur folder Anda
 import Dashboard from './INOVHUB/pages/Dashboard';
 import PostIdea from './INOVHUB/pages/PostIdea';
 
